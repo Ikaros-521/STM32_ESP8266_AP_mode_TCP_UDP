@@ -227,3 +227,81 @@ u8 ipbuf[16] = "192.168.4.2"; 	//IP (根据你的设备连上模块后分配到�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427144338457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427144139223.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+# 拓展
+
+## STA模式
+
+### TCP服务端
+
+准备2个手机，或者能产生wifi信号的设备。
+
+一个手机开启手机热点，设置wifi信息
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427155208711.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+另一个手机连接热点，查看详细信息，分配到的ip是 `192.168.43.39`
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427155319465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+修改`main.c`，调用 `atk_8266_test();`
+
+```c
+atk_8266_test();		//进入ATK_ESP8266测试
+// ap_demo();
+```
+
+修改`common.c`，填写新的STA模式的wifi信息
+
+```c
+//连接端口号:8086,可自行修改为其他端口.
+const u8* portnum="8086";		 
+
+//WIFI STA模式,设置要去连接的路由器无线参数,请根据你自己的路由器设置,自行修改.
+const u8* wifista_ssid="ikaros";			//路由器SSID号
+const u8* wifista_encryption="wpawpa2_aes";	//wpa/wpa2 aes加密方式
+const u8* wifista_password="12345678"; 	//连接密码
+
+//WIFI AP模式,模块对外的无线参数,可自行修改.
+const u8* wifiap_ssid="ATK-ESP8266";			//对外SSID号
+const u8* wifiap_encryption="wpawpa2_aes";	//wpa/wpa2 aes加密方式
+const u8* wifiap_password="12345678"; 		//连接密码 
+```
+
+修改 `wifista.c` 的 `atk_8266_wifista_test(void)` ，IP改成另一个手机的IP（这里给客户端模式用的，暂时没用）
+
+```c
+u8 ipbuf[16] = "192.168.43.39"; 	// IP缓存
+```
+
+程序重编，烧写，打开串口，看到提示按键
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427155055894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427155843852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427160021589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427160147168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+### TCP客户端
+
+这里就用到上面说的ip了
+
+修改 `wifista.c` 的 `atk_8266_wifista_test(void)` ，IP改成另一个手机的IP（这里给客户端模式用的，暂时没用）
+
+```c
+u8 ipbuf[16] = "192.168.43.39"; 	// IP缓存
+```
+
+不重复赘述，直接上结果
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427160658953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427160909584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427161050421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021042716113513.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0lrYXJvc181MjE=,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210427161152967.png)

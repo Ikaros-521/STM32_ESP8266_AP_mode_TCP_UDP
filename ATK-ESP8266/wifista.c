@@ -23,7 +23,7 @@ u8 atk_8266_wifista_test(void)
     //u8 netpro=0;	//网络模式
     u8 key;
     u8 timex=0;
-    u8 ipbuf[16] = "192.168.1.1"; 	//IP缓存
+    u8 ipbuf[16] = "192.168.43.39"; 	// IP缓存
     u8 *p;
     u16 t=999;		//加速第一次获取链接状态
     u8 res=0;
