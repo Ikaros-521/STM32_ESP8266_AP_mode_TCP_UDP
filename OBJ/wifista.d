@@ -41,3 +41,4 @@
 ..\obj\wifista.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\wifista.o: ..\HARDWARE\USART3\usart3.h
 ..\obj\wifista.o: ..\HARDWARE\BEEP\beep.h
+..\obj\wifista.o: ..\HARDWARE\DHT11\dht11.h

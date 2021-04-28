@@ -43,3 +43,4 @@
 ..\obj\usmart_config.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\usmart_config.o: ..\HARDWARE\USART3\usart3.h
 ..\obj\usmart_config.o: ..\HARDWARE\BEEP\beep.h
+..\obj\usmart_config.o: ..\HARDWARE\DHT11\dht11.h

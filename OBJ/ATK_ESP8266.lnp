@@ -14,6 +14,7 @@
 "..\obj\timer.o"
 "..\obj\usart3.o"
 "..\obj\beep.o"
+"..\obj\dht11.o"
 "..\obj\misc.o"
 "..\obj\stm32f10x_dma.o"
 "..\obj\stm32f10x_exti.o"

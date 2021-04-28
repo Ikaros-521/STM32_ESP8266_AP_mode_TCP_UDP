@@ -9,6 +9,7 @@
 #include "usart3.h"
 #include "common.h"
 #include "beep.h"
+#include "dht11.h"
 
 // AP模式测试
 void ap_demo(void);
@@ -26,6 +27,12 @@ int main(void)
     usart3_init(115200);		//初始化串口3
     my_mem_init(SRAMIN);		//初始化内部内存池
     //LCD_Clear(BLACK);
+	/*
+	while(DHT11_Init())			//DHT11初始化 DATA -> PG11
+	{
+		printf("DHT11 Error\r\n");
+	}
+	*/
 
     delay_ms(1000);
 	
@@ -33,7 +40,7 @@ int main(void)
 	LED1 = 0;
 	ap_demo();
 	
-    //atk_8266_test();		//进入ATK_ESP8266测试
+    // atk_8266_test();		//进入ATK_ESP8266测试
 }
 
 // AP模式测试

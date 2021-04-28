@@ -84,9 +84,10 @@ LED1 ON
 LED1 OFF
 BEEP ON
 BEEP OFF
+GET T&H
 ```
 
-参考文章：[STM32F103+ESP8266（WiFi）模块 简单应用之远程控制LED和蜂鸣器](https://blog.csdn.net/Ikaros_521/article/details/116232001)
+参考文章：[STM32F103+ESP8266（WiFi）模块 简单应用之远程控制LED和蜂鸣器、读取温湿度](https://blog.csdn.net/Ikaros_521/article/details/116232001)
 
 # 接线
 

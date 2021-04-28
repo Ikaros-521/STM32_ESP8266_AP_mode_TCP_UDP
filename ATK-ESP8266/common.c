@@ -517,6 +517,10 @@ void send_data_to_usart3(u8 netpro, char *data)
 void recv_data_analysis(u8 netpro, u8 *USART3_RX_BUF)
 {
 	char *ptr = NULL;
+	char buf[100] = {0};
+	u8 temperature = 0;
+    u8 humidity = 0;
+	
 	ptr = mymalloc(SRAMIN, 600); //申请600字节内存
 	
 	if((netpro==1))   //TCP Client
@@ -563,6 +567,14 @@ void recv_data_analysis(u8 netpro, u8 *USART3_RX_BUF)
 		printf("开启BEEP\r\n");
 		
 		send_data_to_usart3(netpro, "开启BEEP成功\r\n");
+	}
+	else if(strcmp(ptr, "GET T&H") == 0)
+	{
+		DHT11_Read_Data(&temperature, &humidity);	//读取温湿度值
+		sprintf(buf, "读取，温度:%d℃ 湿度:%d%%RH\r\n", temperature, humidity);
+		printf("%s", buf);
+		
+		send_data_to_usart3(netpro, buf);
 	}
 	
 	myfree(SRAMIN, ptr);		// 释放内存

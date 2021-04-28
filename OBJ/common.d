@@ -41,3 +41,4 @@
 ..\obj\common.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\common.o: ..\HARDWARE\USART3\usart3.h
 ..\obj\common.o: ..\HARDWARE\BEEP\beep.h
+..\obj\common.o: ..\HARDWARE\DHT11\dht11.h

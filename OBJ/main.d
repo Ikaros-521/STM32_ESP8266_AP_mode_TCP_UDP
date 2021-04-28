@@ -43,3 +43,4 @@
 ..\obj\main.o: ..\ATK-ESP8266\common.h
 ..\obj\main.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\main.o: ..\HARDWARE\BEEP\beep.h
+..\obj\main.o: ..\HARDWARE\DHT11\dht11.h

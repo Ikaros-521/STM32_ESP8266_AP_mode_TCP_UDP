@@ -41,3 +41,4 @@
 ..\obj\apsta.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\apsta.o: ..\HARDWARE\USART3\usart3.h
 ..\obj\apsta.o: ..\HARDWARE\BEEP\beep.h
+..\obj\apsta.o: ..\HARDWARE\DHT11\dht11.h
