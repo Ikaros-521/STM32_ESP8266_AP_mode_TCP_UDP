@@ -40,3 +40,4 @@
 ..\obj\apsta.o: ..\MALLOC\malloc.h
 ..\obj\apsta.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\apsta.o: ..\HARDWARE\USART3\usart3.h
+..\obj\apsta.o: ..\HARDWARE\BEEP\beep.h

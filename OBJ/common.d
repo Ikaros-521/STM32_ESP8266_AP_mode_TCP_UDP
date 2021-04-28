@@ -40,3 +40,4 @@
 ..\obj\common.o: ..\MALLOC\malloc.h
 ..\obj\common.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\common.o: ..\HARDWARE\USART3\usart3.h
+..\obj\common.o: ..\HARDWARE\BEEP\beep.h

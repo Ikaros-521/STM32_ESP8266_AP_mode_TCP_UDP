@@ -9,6 +9,7 @@
 #include "malloc.h"
 #include "string.h"    		
 #include "usart3.h" 
+#include "beep.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK STM32开发板
@@ -47,7 +48,10 @@ void atk_8266_mtest_ui(u16 x,u16 y);
 u8 atk_8266_ip_set(u8* title,u8* mode,u8* port,u8* ip);
 void atk_8266_test(void);
 
-
+// USART3收到的数据进行解析
+void send_data_to_usart3(u8 netpro, char *data);
+// USART3收到的数据进行解析
+void recv_data_analysis(u8 netpro, u8 *USART3_RX_BUF);
 
 u8 atk_8266_apsta_test(void);	//WIFI AP+STA模式测试
 u8 atk_8266_wifista_test(void);	//WIFI STA测试

@@ -40,3 +40,4 @@
 ..\obj\wifiap.o: ..\MALLOC\malloc.h
 ..\obj\wifiap.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\wifiap.o: ..\HARDWARE\USART3\usart3.h
+..\obj\wifiap.o: ..\HARDWARE\BEEP\beep.h

@@ -40,3 +40,4 @@
 ..\obj\wifista.o: ..\MALLOC\malloc.h
 ..\obj\wifista.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\wifista.o: ..\HARDWARE\USART3\usart3.h
+..\obj\wifista.o: ..\HARDWARE\BEEP\beep.h

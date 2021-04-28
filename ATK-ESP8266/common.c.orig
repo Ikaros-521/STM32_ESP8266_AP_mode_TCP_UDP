@@ -486,30 +486,27 @@ void atk_8266_test(void)
 // USART3收到的数据进行解析
 void send_data_to_usart3(u8 netpro, char *data)
 {
-	u8 len = 0;
-	u8 buf[20] = {0};
-	
-	len = strlen(data);
-	
 	if((netpro==3)||(netpro==2))   //UDP
 	{
-		sprintf((char*)buf, "AT+CIPSEND=%d", len);
-		atk_8266_send_cmd(buf,"OK",200);  //发送指定长度的数据
-		delay_ms(200);
-		atk_8266_send_data((u8 *)data,"OK",100);  //发送指定长度的数据
+		atk_8266_send_cmd("AT+CIPSEND=25","OK",200);  //发送指定长度的数据
+                delay_ms(200);
+                atk_8266_send_data(p,"OK",100);  //发送指定长度的数据
 	}
 	else if((netpro==1))   //TCP Client
 	{
 		atk_8266_quit_trans();
-		atk_8266_send_cmd("AT+CIPSEND","OK",20);         //开始透传
-		u3_printf("%s", data);
+                atk_8266_send_cmd("AT+CIPSEND","OK",20);         //开始透传
+                sprintf((char*)p,"ATK-8266%s测试%d\r\n",ATK_ESP8266_WORKMODE_TBL[netpro],t/10);//测试数据
+                printf("%s",p);
+                u3_printf("%s",p);
 	}
 	else // TCP server
 	{
-		sprintf((char*)buf, "AT+CIPSEND=0,%d", len);
-		atk_8266_send_cmd(buf,"OK",200);  //发送指定长度的数据
+		sprintf((char*)p,"ATK-8266%s测试%02d\r\n",ATK_ESP8266_WORKMODE_TBL[netpro],t/10);//测试数据
+		printf("%s",p);
+		atk_8266_send_cmd("AT+CIPSEND=0,25","OK",200);  //发送指定长度的数据
 		delay_ms(200);
-		atk_8266_send_data((u8 *)data,"OK",100);  //发送指定长度的数据
+		atk_8266_send_data(p,"OK",100);  //发送指定长度的数据
 	}
 }
 
@@ -541,28 +538,37 @@ void recv_data_analysis(u8 netpro, u8 *USART3_RX_BUF)
 		LED1 = 0;
 		printf("打开LED1\r\n");
 		
-		send_data_to_usart3(netpro, "打开LED1成功\r\n");
+		
+		atk_8266_send_cmd("AT+CIPSEND=0,14","OK",200);  //发送指定长度的数据
+		delay_ms(200);
+		atk_8266_send_data("打开LED1成功\r\n","OK",100);  //发送指定长度的数据
 	}
 	else if(strcmp(ptr, "LED1 OFF") == 0)
 	{
 		LED1 = 1;
 		printf("关闭LED1\r\n");
 		
-		send_data_to_usart3(netpro, "关闭LED1成功\r\n");
+		atk_8266_send_cmd("AT+CIPSEND=0,14","OK",200);  //发送指定长度的数据
+		delay_ms(200);
+		atk_8266_send_data("关闭LED1成功\r\n","OK",100);  //发送指定长度的数据
 	}
 	else if(strcmp(ptr, "BEEP OFF") == 0)
 	{
 		BEEP = 0;
 		printf("关闭BEEP\r\n");
 		
-		send_data_to_usart3(netpro, "关闭BEEP成功\r\n");
+		atk_8266_send_cmd("AT+CIPSEND=0,14","OK",200);  //发送指定长度的数据
+		delay_ms(200);
+		atk_8266_send_data("关闭BEEP成功\r\n","OK",100);  //发送指定长度的数据
 	}
 	else if(strcmp(ptr, "BEEP ON") == 0)
 	{
 		BEEP = 1;
 		printf("开启BEEP\r\n");
 		
-		send_data_to_usart3(netpro, "开启BEEP成功\r\n");
+		atk_8266_send_cmd("AT+CIPSEND=0,14","OK",200);  //发送指定长度的数据
+		delay_ms(200);
+		atk_8266_send_data("开启BEEP成功\r\n","OK",100);  //发送指定长度的数据
 	}
 	
 	myfree(SRAMIN, ptr);		// 释放内存

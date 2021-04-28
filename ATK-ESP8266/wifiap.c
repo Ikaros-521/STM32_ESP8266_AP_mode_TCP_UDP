@@ -22,7 +22,7 @@ u8 atk_8266_wifiap_test(void)
     u8 netpro=0;	//网络模式
     u8 key;
     u8 timex=0;
-    u8 ipbuf[16] = "192.168.1.1"; 	//IP缓存
+    u8 ipbuf[16] = "192.168.4.2"; 	//IP缓存
     u8 *p;
     u16 t=999;		//加速第一次获取链接状态
     u8 res=0;
@@ -134,6 +134,10 @@ PRESTA:
             printf("%s\r\n",p); 			//显示接收到的数据长度
             printf("接收数据:%s\r\n",USART3_RX_BUF);//显示接收到的数据
             USART3_RX_STA=0;
+			
+			// USART3收到的数据进行解析
+			recv_data_analysis(netpro, USART3_RX_BUF);
+			
             if(constate!='+')t=1000;		//状态为还未连接,立即更新连接状态
             else t=0;                   //状态为已经连接了,10秒后再检查
         }

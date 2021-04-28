@@ -42,3 +42,4 @@
 ..\obj\usmart_config.o: ..\MALLOC\malloc.h
 ..\obj\usmart_config.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\usmart_config.o: ..\HARDWARE\USART3\usart3.h
+..\obj\usmart_config.o: ..\HARDWARE\BEEP\beep.h

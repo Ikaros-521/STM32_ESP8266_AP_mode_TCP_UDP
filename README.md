@@ -71,6 +71,23 @@ const u8* wifiap_encryption="wpawpa2_aes";	//wpa/wpa2 aes加密方式
 const u8* wifiap_password="12345678"; 		//连接密码 
 ```
 
+### 拓展应用
+
+#### 功能介绍：
+
+AP STA STA+AP 模式下，建立tcp/udp连接后，发送指定命令，控制LED1和蜂鸣器的开关。
+
+命令如下：（每行都是一条命令，不要有换行等）具体实现在`common.c`中
+
+```c
+LED1 ON
+LED1 OFF
+BEEP ON
+BEEP OFF
+```
+
+参考文章：[STM32F103+ESP8266（WiFi）模块 简单应用之远程控制LED和蜂鸣器](https://blog.csdn.net/Ikaros_521/article/details/116232001)
+
 # 接线
 
 ## 接ATK MODULE

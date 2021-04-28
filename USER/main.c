@@ -8,6 +8,7 @@
 #include "malloc.h"
 #include "usart3.h"
 #include "common.h"
+#include "beep.h"
 
 // AP模式测试
 void ap_demo(void);
@@ -20,15 +21,19 @@ int main(void)
     usmart_dev.init(72);		//初始化USMART
     LED_Init();		  			//初始化与LED连接的硬件接口
     KEY_Init();					//初始化按键
+	BEEP_Init();				//初始化蜂鸣器
     //LCD_Init();			   	//初始化LCD
     usart3_init(115200);		//初始化串口3
     my_mem_init(SRAMIN);		//初始化内部内存池
     //LCD_Clear(BLACK);
 
     delay_ms(1000);
-    // atk_8266_test();		//进入ATK_ESP8266测试
 	
+	BEEP = 0;
+	LED1 = 0;
 	ap_demo();
+	
+    //atk_8266_test();		//进入ATK_ESP8266测试
 }
 
 // AP模式测试
@@ -163,7 +168,11 @@ PRESTA:
                 sprintf((char*)p,"收到%d字节,内容如下",rlen);//接收到的字节数
                 printf("%s\r\n",p); 			//显示接收到的数据长度
                 printf("接收数据:%s\r\n",USART3_RX_BUF);//显示接收到的数据
-                USART3_RX_STA=0;
+				USART3_RX_STA=0;
+				
+				// USART3收到的数据进行解析
+				recv_data_analysis(netpro, USART3_RX_BUF);
+				
                 if(constate!='+')t=1000;		//状态为还未连接,立即更新连接状态
                 else t=0;                   //状态为已经连接了,10秒后再检查
             }

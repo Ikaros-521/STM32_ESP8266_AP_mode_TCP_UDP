@@ -154,15 +154,14 @@ PRESTA:
         {
             rlen=USART3_RX_STA&0X7FFF;	//得到本次接收到的数据长度
             USART3_RX_BUF[rlen]=0;		//添加结束符
-            printf("%s",USART3_RX_BUF);	//发送到串口
             sprintf((char*)p,"收到%d字节,内容如下",rlen);//接收到的字节数
-            LCD_Fill(30+54,115,239,130,WHITE);
-            POINT_COLOR=BRED;
-            printf("%s",p); 			//显示接收到的数据长度
-            POINT_COLOR=BLUE;
-            LCD_Fill(30,130,239,319,WHITE);
-            printf("%s",USART3_RX_BUF);//显示接收到的数据
+            printf("%s\r\n",p); 			//显示接收到的数据长度
+            printf("接收数据:%s\r\n",USART3_RX_BUF);//显示接收到的数据
             USART3_RX_STA=0;
+			
+			// USART3收到的数据进行解析
+			recv_data_analysis(netpro, USART3_RX_BUF);
+			
             if(constate!='+')t=1000;		//状态为还未连接,立即更新连接状态
             else t=0;                   //状态为已经连接了,10秒后再检查
         }
