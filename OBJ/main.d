@@ -44,3 +44,4 @@
 ..\obj\main.o: D:\KELI\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\main.o: ..\HARDWARE\BEEP\beep.h
 ..\obj\main.o: ..\HARDWARE\DHT11\dht11.h
+..\obj\main.o: ..\HARDWARE\STEP\step.h

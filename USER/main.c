@@ -10,6 +10,7 @@
 #include "common.h"
 #include "beep.h"
 #include "dht11.h"
+#include "step.h"
 
 // AP模式测试
 void ap_demo(void);
@@ -26,6 +27,7 @@ int main(void)
     //LCD_Init();			   	//初始化LCD
     usart3_init(115200);		//初始化串口3
     my_mem_init(SRAMIN);		//初始化内部内存池
+	Step_Motor_GPIO_Init();     // 步进电机初始化
     //LCD_Clear(BLACK);
 	while(DHT11_Init())			//DHT11初始化 DATA -> PG11
 	{
